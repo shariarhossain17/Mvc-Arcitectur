@@ -12,3 +12,8 @@ let users = [
     const user = users[Math.floor(Math.random() * users.length)];
     res.json(user)
   } 
+
+  module.exports.getAllUser = (req,res,next) => {
+    const {limit} = req.query;
+    res.json(users.slice(0,limit))
+  }
