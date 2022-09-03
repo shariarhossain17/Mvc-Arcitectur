@@ -67,13 +67,45 @@ module.exports.getAllUser = (req, res, next) => {
 module.exports.saveUser = (req, res, next) => {
   const { name, gender, contact, address, photoUrl } = req.body;
   if (name && gender && contact && address && photoUrl) {
-    users.push({id:users.length+1, name, gender, contact, address, photoUrl });
+    users.push({
+      id: users.length + 1,
+      name,
+      gender,
+      contact,
+      address,
+      photoUrl,
+    });
     res.json(users);
-  } 
-  else {
+  } else {
     res.json({
       message:
         "please provide name,gender,contact,address,photoUrl all the information",
     });
   }
+};
+
+module.exports.updateUser = (req, res, next) => {
+  const { id } = req.params;
+  let updateUser = users.find((user) => user.id === Number(id));
+
+  updateUser.id = Number(id);
+
+  updateUser = {
+    ...updateUser,
+    name: req.body.name,
+    gender: req.body.gender,
+    contact: req.body.contact,
+    address: req.body.address,
+    photoUrl: req.body.photoUrl,
+  };
+
+  res.json(updateUser);
+};
+
+
+module.exports.deleteUser = (req, res, next) => {
+  const { id } = req.params;
+  let removeUser = users.filter((user) => user.id !== Number(id));
+
+  res.json(removeUser);
 };

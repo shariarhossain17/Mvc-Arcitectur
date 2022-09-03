@@ -22,9 +22,30 @@ router
 
   router.route('/user/save')
   /**
- * @api {get all user}
+ * @api {get save user}
  * 
  */
 .post(userController.saveUser)
+
+
+  router.route('/user/update/:id')
+  /**
+ * @api {update user}
+ * 
+ */
+.patch(userController.updateUser)
+
+
+
+  router.route('/user/delete/:id')
+  /**
+ * @api {delete user}
+ * 
+ */
+.delete(userController.deleteUser)
+
+
+
+
 
 module.exports = router;
