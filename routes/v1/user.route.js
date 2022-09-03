@@ -36,6 +36,14 @@ router
 .patch(userController.updateUser)
 
 
+  router.route('/user/bulk-update')
+  /**
+ * @api {update user}
+ * 
+ */
+.patch(userController.bulkUpdate)
+
+
 
   router.route('/user/delete/:id')
   /**

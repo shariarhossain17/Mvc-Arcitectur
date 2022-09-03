@@ -107,7 +107,33 @@ module.exports.updateUser = (req, res, next) => {
   }
   res.json(updateUser);
 };
+module.exports.bulkUpdate = (req, res, next) => {
+  const { user } = req.body;
+  const { name, gender, contact, address, photoUrl } = req.body;
 
+  user.forEach((element) => {
+     const updateUser = users.find((u) => u.id === element);
+     updateUser.name = name
+     updateUser.id = element
+     if (name) {
+         updateUser.name = name;
+       }
+       if (gender) {
+         updateUser.gender = gender;
+       }
+       if (contact) {
+         updateUser.contact = contact;
+       }
+       if (address) {
+         updateUser.address = address;
+       }
+       if (photoUrl) {
+         updateUser.address = photoUrl;
+       };
+     res.json(updateUser);
+  });
+
+};
 module.exports.deleteUser = (req, res, next) => {
   const { id } = req.params;
   let removeUser = users.filter((user) => user.id !== Number(id));
