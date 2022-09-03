@@ -86,22 +86,27 @@ module.exports.saveUser = (req, res, next) => {
 
 module.exports.updateUser = (req, res, next) => {
   const { id } = req.params;
+  const { name, gender, contact, address, photoUrl } = req.body;
   let updateUser = users.find((user) => user.id === Number(id));
 
   updateUser.id = Number(id);
-
-  updateUser = {
-    ...updateUser,
-    name: req.body.name,
-    gender: req.body.gender,
-    contact: req.body.contact,
-    address: req.body.address,
-    photoUrl: req.body.photoUrl,
-  };
-
+  if (name) {
+    updateUser.name = name;
+  }
+  if (gender) {
+    updateUser.gender = gender;
+  }
+  if (contact) {
+    updateUser.contact = contact;
+  }
+  if (address) {
+    updateUser.address = address;
+  }
+  if (photoUrl) {
+    updateUser.address = photoUrl;
+  }
   res.json(updateUser);
 };
-
 
 module.exports.deleteUser = (req, res, next) => {
   const { id } = req.params;
