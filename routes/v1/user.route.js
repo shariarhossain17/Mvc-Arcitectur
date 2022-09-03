@@ -19,4 +19,12 @@ router
  */
 .get(userController.getAllUser)
 
+
+  router.route('/user/save')
+  /**
+ * @api {get all user}
+ * 
+ */
+.post(userController.saveUser)
+
 module.exports = router;
